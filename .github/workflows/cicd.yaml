@@ -45,7 +45,7 @@ jobs:
           tags: krishnatr/diabetes_prediction:latest
 
   deploy:
-    runs-on: slef-hosted
+    runs-on: self-hosted
 
     steps:
         - name: Login to Azure
