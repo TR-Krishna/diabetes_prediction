@@ -4,7 +4,11 @@ on:
   push: 
     branches: [main]
   workflow_dispatch:
-  
+    
+env :
+    IMAGE_NAME: krishnatr/diabetes_prediction
+    RESOURCE_GROUP: diabetes-pred
+    CONTAINER_APP_NAME: diabetes_prediction
 # permissions:
 #   contents: read
 #   packages: write
@@ -39,3 +43,23 @@ jobs:
           context: .
           push: true
           tags: krishnatr/diabetes_prediction:latest
+
+  deploy:
+    runs-on: slef-hosted
+
+    steps:
+        - name: Login to Azure
+          uses: azure/login@v3
+          with: 
+            creds: ${{secrets.AZURE_CREDENTIALS}}
+            
+        - name: Deploy to Azure Container Apps
+          uses: azure/container-apps-deploy-action@v1
+          with: 
+            resourceGroup: ${{env.RESOURCE_GROUP}}
+            containerAppName: ${{env.CONTAINER_APP_NAME}}
+            imageToDeploy: docker.io/${{env.IMAGE_NAME}}:${{github.sha}}
+            registryUrl: docker.io
+            registryUsername: ${{secrets.DOCKER_USERNAME}}
+            registryPassword: ${{secrets.DOCKER_PASSWORD}}
+  
