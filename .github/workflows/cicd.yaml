@@ -8,7 +8,7 @@ on:
 env :
     IMAGE_NAME: krishnatr/diabetes_prediction
     RESOURCE_GROUP: diabetics-pred
-    CONTAINER_APP_NAME: diabetes_prediction
+    CONTAINER_APP_NAME: diabetes-prediction
 # permissions:
 #   contents: read
 #   packages: write
