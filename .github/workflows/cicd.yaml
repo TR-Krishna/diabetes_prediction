@@ -45,7 +45,7 @@ jobs:
           tags: krishnatr/diabetes_prediction:latest
 
   deploy:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
 
     steps:
         - name: Login to Azure
