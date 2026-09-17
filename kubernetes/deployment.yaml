@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: diabetics-deployment
+  namespace: dia-pred
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: diabetics
+  template:
+    metadata:
+      labels:
+        app: diabetics
+    spec:
+      containers:
+        - name: diabetes-prediction
+          image: krishnatr/diabetes_prediction:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8010
