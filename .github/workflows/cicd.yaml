@@ -42,7 +42,9 @@ jobs:
         with:
           context: .
           push: true
-          tags: krishnatr/diabetes_prediction:latest
+          tags: |
+            krishnatr/diabetes_prediction:latest
+            krishnatr/diabetes_prediction:${{github.sha}}      
 
   deploy:
     runs-on: ubuntu-latest
